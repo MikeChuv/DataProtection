@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ui/mainWindow.ui'
+# Form implementation generated from reading ui file '.\ui\mainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -91,3 +91,13 @@ class Ui_LoginWindow(object):
         self.menuHelp.setTitle(_translate("LoginWindow", "&Help"))
         self.actionExit.setText(_translate("LoginWindow", "&Exit"))
         self.actionAbout.setText(_translate("LoginWindow", "&About"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    LoginWindow = QtWidgets.QMainWindow()
+    ui = Ui_LoginWindow()
+    ui.setupUi(LoginWindow)
+    LoginWindow.show()
+    sys.exit(app.exec_())

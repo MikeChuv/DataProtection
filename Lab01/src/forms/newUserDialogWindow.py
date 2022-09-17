@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ui/newUserDialog.ui'
+# Form implementation generated from reading ui file '.\ui\newUserDialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -51,3 +51,13 @@ class Ui_newUserDialog(object):
         _translate = QtCore.QCoreApplication.translate
         newUserDialog.setWindowTitle(_translate("newUserDialog", "New User"))
         self.newUserLoginLabel.setText(_translate("newUserDialog", "New User Login"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    newUserDialog = QtWidgets.QDialog()
+    ui = Ui_newUserDialog()
+    ui.setupUi(newUserDialog)
+    newUserDialog.show()
+    sys.exit(app.exec_())

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ui/admin.ui'
+# Form implementation generated from reading ui file '.\ui\admin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -69,3 +69,13 @@ class Ui_AdminWindow(object):
         self.actionExit.setText(_translate("AdminWindow", "&Exit"))
         self.actionAbout.setText(_translate("AdminWindow", "&About"))
         self.actionChange_password.setText(_translate("AdminWindow", "&Change password"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    AdminWindow = QtWidgets.QMainWindow()
+    ui = Ui_AdminWindow()
+    ui.setupUi(AdminWindow)
+    AdminWindow.show()
+    sys.exit(app.exec_())

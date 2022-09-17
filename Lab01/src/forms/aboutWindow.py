@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ui/about.ui'
+# Form implementation generated from reading ui file '.\ui\about.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -39,3 +39,13 @@ class Ui_aboutDialog(object):
         aboutDialog.setWindowTitle(_translate("aboutDialog", "About"))
         self.authorLabel.setText(_translate("aboutDialog", "(c) Чуворкин Михаил А-13а-19"))
         self.taskLabel.setText(_translate("aboutDialog", "Вариант 48: Чередование букв, знаков арифметических операций, цифр."))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    aboutDialog = QtWidgets.QDialog()
+    ui = Ui_aboutDialog()
+    ui.setupUi(aboutDialog)
+    aboutDialog.show()
+    sys.exit(app.exec_())
