@@ -10,14 +10,13 @@ class UsersDataReaderWriter(object):
 
 	def __enter__(self):
 		try:
-			self._file = open(self._fileName, 'r+')
+			self._file = open(self._fileName, 'rb+')
 		except FileNotFoundError:
-			self._file = open(self._fileName, 'w+')
+			self._file = open(self._fileName, 'wb+')
 			defaultAdmin = {'login' : 'ADMIN', 'password' : '', 'blocked' : 0, 'restrictions' : 0}
-			dat = json.dumps(defaultAdmin)
+			dat = json.dumps(defaultAdmin).encode(encoding='UTF-8')
 			self._file.write(dat)
 			self._file.seek(0)
-		
 		return self
 
 
@@ -27,20 +26,17 @@ class UsersDataReaderWriter(object):
 
 	def readData(self) -> list:
 		assert self._file.closed == False
-		# self._textData = self._file.readlines()
-		# self._file.seek(0)
-		# print(self._textData)
-		self._userList = json.load(self._file)
+		data = self._file.read().decode(encoding='UTF-8')
+		self._userList = json.loads(data)
 		if type(self._userList) == dict:
 			self._userList = [self._userList]
-		print(self._userList)
 		return self._userList
 
 
 		
 
-	def writeData(self, data : List[UserAccount]):
+	def writeData(self, data : List[UserAccount]) -> None:
 		assert self._file.closed == False
 		dictData : List[dict] = [x.asDict() for x in data]
-		jsonData = json.dumps(dictData)
+		jsonData = json.dumps(dictData).encode(encoding='UTF-8')
 		self._file.write(jsonData)

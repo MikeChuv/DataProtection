@@ -1,15 +1,17 @@
 
-from UserAccount import UserAccount
+from typing import Union, List
+
+
 from Admin import Admin
+from UserAccount import UserAccount
 from UsersDataReaderWriter import UsersDataReaderWriter
 
 
-from typing import Union, List
 
 
 class Users:
 
-	_userList = []
+	_userList : List[UserAccount] = []
 	_accountsFileName = ''
 
 	def __init__(self, accountsFileName : str):
@@ -21,29 +23,55 @@ class Users:
 					acc = Admin(
 						user['login'], \
 						user['password'], \
-						bool(user['blocked']), \
-						bool(user['restrictions'])
+						user['blocked'], \
+						user['restrictions']
 					)
 				else:
 					acc = UserAccount(
 						user['login'], \
 						user['password'], \
-						bool(user['blocked']), \
-						bool(user['restrictions'])
+						user['blocked'], \
+						user['restrictions']
 					)
 				
 				self._userList.append(acc)
 
 
+	def __getitem__(self, i : int) -> UserAccount:
+		return self._userList[i]
+
+	def __setitem__(self, i : int, item : UserAccount):
+		self._userList[i] = item
+
+	def __len__(self):
+		return len(self._userList)
+
 	def getAccount(self, login : str, password : str) -> Union[UserAccount, None]:
-		flag = False
 		for user in self._userList:
 			if user.login == login and user.password == password:
 				flag = True
 				return user
+		return None
 
-		if not flag: return None
 
+	def hasAccountWithLogin(self, login : str) -> bool:
+		for user in self._userList:
+			if user.login == login:
+				return True
+		return False
+
+
+	def updateAccount(self, old : UserAccount, new : UserAccount) -> None:
+		for i in range(len(self._userList)):
+			if self._userList[i] == old:
+				self._userList[i] = new
+
+	def addAccount(self, acc : UserAccount):
+		self._userList.append(acc)
+
+	def addAccountByLogin(self, login : str):
+		acc = UserAccount(login, '', 0, 0)
+		self._userList.append(acc)
 
 	def save(self):
 		with UsersDataReaderWriter(self._accountsFileName) as writer:

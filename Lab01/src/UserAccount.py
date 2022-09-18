@@ -1,31 +1,24 @@
 
 
-
-from typing import overload
-
-
 class UserAccount:
 
 	_login : str = ''
 	_password : str = ''
 
-	_blocked : bool = False
-	_hasPasswordRestriction : bool = False
+	_blocked : int = 0
+	_hasPasswordRestriction : int = 0
 
 
-	def __init__(self):
-		pass
-
-
-	def __init__(self, login : str, password : str, blocked : bool, restrictions : bool):
+	def __init__(self, login : str, password : str, blocked, restrictions):
 		self._login = login
 		self._password = password
 		self._blocked = blocked
 		self._hasPasswordRestriction = restrictions
 
-
 	def __repr__(self):
-		return f"login: {self.login}, \t password: {self.password}"
+		return f"login: {self.login}, password: {self.password}, blocked: {self.blocked}"
+
+
 
 	def isAdmin(self):
 		return False
@@ -34,10 +27,12 @@ class UserAccount:
 		accDict = {
 			'login' : self._login,
 			'password' : self._password,
-			'blocked' : int(self._blocked),
-			'restrictions' : int(self._hasPasswordRestriction)
+			'blocked' : self._blocked,
+			'restrictions' : self._hasPasswordRestriction
 		}
 		return accDict
+
+	#####################################
 
 	@property
 	def login(self):
@@ -63,7 +58,7 @@ class UserAccount:
 		return self._blocked
 
 	@blocked.setter
-	def blocked(self, blocked : bool):
+	def blocked(self, blocked):
 		self._blocked = blocked
 
 
@@ -74,7 +69,7 @@ class UserAccount:
 		return self._hasPasswordRestriction
 
 	@hasPasswordRestriction.setter
-	def hasPasswordRestriction(self, restriction : bool):
+	def hasPasswordRestriction(self, restriction):
 		self._hasPasswordRestriction = restriction
 
 

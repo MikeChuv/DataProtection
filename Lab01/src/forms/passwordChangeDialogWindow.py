@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\ui\passwordChangeDialog.ui'
+# Form implementation generated from reading ui file './ui/passwordChangeDialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -88,13 +88,3 @@ class Ui_ChangePasswordDialog(object):
         self.oldPasswordLabel.setText(_translate("ChangePasswordDialog", "Old password"))
         self.newPasswordLabel.setText(_translate("ChangePasswordDialog", "New password"))
         self.confirmNewPasswordLabel.setText(_translate("ChangePasswordDialog", "Confirm new password"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ChangePasswordDialog = QtWidgets.QDialog()
-    ui = Ui_ChangePasswordDialog()
-    ui.setupUi(ChangePasswordDialog)
-    ChangePasswordDialog.show()
-    sys.exit(app.exec_())

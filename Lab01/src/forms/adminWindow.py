@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\ui\admin.ui'
+# Form implementation generated from reading ui file './ui/admin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -17,8 +17,12 @@ class Ui_AdminWindow(object):
         AdminWindow.resize(480, 496)
         self.centralwidget = QtWidgets.QWidget(AdminWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
         self.usersTableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.usersTableWidget.setGeometry(QtCore.QRect(10, 50, 451, 192))
+        self.usersTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.usersTableWidget.setColumnCount(3)
         self.usersTableWidget.setObjectName("usersTableWidget")
         self.usersTableWidget.setRowCount(0)
@@ -28,6 +32,28 @@ class Ui_AdminWindow(object):
         self.usersTableWidget.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.usersTableWidget.setHorizontalHeaderItem(2, item)
+        self.usersTableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.usersTableWidget.horizontalHeader().setHighlightSections(True)
+        self.usersTableWidget.horizontalHeader().setMinimumSectionSize(70)
+        self.usersTableWidget.horizontalHeader().setStretchLastSection(True)
+        self.verticalLayout.addWidget(self.usersTableWidget)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.newUserLoginLabel = QtWidgets.QLabel(self.centralwidget)
+        self.newUserLoginLabel.setObjectName("newUserLoginLabel")
+        self.horizontalLayout.addWidget(self.newUserLoginLabel)
+        self.newUserLoginEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.newUserLoginEdit.setObjectName("newUserLoginEdit")
+        self.horizontalLayout.addWidget(self.newUserLoginEdit)
+        self.addNewUserButton = QtWidgets.QPushButton(self.centralwidget)
+        self.addNewUserButton.setObjectName("addNewUserButton")
+        self.horizontalLayout.addWidget(self.addNewUserButton)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem1)
         AdminWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(AdminWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 480, 35))
@@ -64,18 +90,10 @@ class Ui_AdminWindow(object):
         item.setText(_translate("AdminWindow", "Blocked"))
         item = self.usersTableWidget.horizontalHeaderItem(2)
         item.setText(_translate("AdminWindow", "Restriction"))
+        self.newUserLoginLabel.setText(_translate("AdminWindow", "New User Login"))
+        self.addNewUserButton.setText(_translate("AdminWindow", "Add"))
         self.menuFile.setTitle(_translate("AdminWindow", "F&ile"))
         self.menuHelp.setTitle(_translate("AdminWindow", "H&elp"))
         self.actionExit.setText(_translate("AdminWindow", "&Exit"))
         self.actionAbout.setText(_translate("AdminWindow", "&About"))
         self.actionChange_password.setText(_translate("AdminWindow", "&Change password"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    AdminWindow = QtWidgets.QMainWindow()
-    ui = Ui_AdminWindow()
-    ui.setupUi(AdminWindow)
-    AdminWindow.show()
-    sys.exit(app.exec_())
