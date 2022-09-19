@@ -87,6 +87,9 @@ class AdminWindow(QtWidgets.QMainWindow):
 			blockedItem = QtWidgets.QTableWidgetItem()
 			blockedItem.setCheckState(u.blocked)
 			self.ui.usersTableWidget.setItem(i, 1, blockedItem)
+			if isinstance(u, Admin): 
+				flags = blockedItem.flags()
+				blockedItem.setFlags(flags & ~32)
 			hasRestrictionItem = QtWidgets.QTableWidgetItem()
 			hasRestrictionItem.setCheckState(u.hasPasswordRestriction)
 			self.ui.usersTableWidget.setItem(i, 2, hasRestrictionItem)
