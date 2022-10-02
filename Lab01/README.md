@@ -50,11 +50,11 @@ $P=\{P_0, P_1, ..., P_i, ... P_{n-1}\}$ - открытый текст
 
 $n$ - длина открытого текста
 
-$A = \{A_0, A_1, ..., A_{m-1}\}$ - алфавит символов открытого текста ($\forall i: \quad 0 \leq i \leq n-1, \quad P_i \in A$)
+$A = \{A_0, A_1, ..., A_{m-1}\}$ - алфавит символов открытого текста ( $\forall i: \quad 0 \leq i \leq n-1, \quad P_i \in A$ )
 
 $C = \{C_0, C_1, ..., C_i, ..., C_{n-1}\}$ - шифротекст
 
-$k = \{k_0, k_1, ..., k_i, ..., k_{n-1}\}$ - ключ шифрования ($\forall i: \quad 0 \leq i \leq n-1, \quad 0 \leq k_i < m$)
+$k = \{k_0, k_1, ..., k_i, ..., k_{n-1}\}$ - ключ шифрования ( $\forall i: \quad 0 \leq i \leq n-1, \quad 0 \leq k_i < m$ )
 
 $\forall a_i \in A, \quad 0 \leq i \leq m-1 \quad a_i + k = a_{i+k}$
 
