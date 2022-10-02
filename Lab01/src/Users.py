@@ -48,15 +48,14 @@ class Users:
 
 	def getAccount(self, login : str, password : str) -> Union[UserAccount, None]:
 		for user in self._userList:
-			if user.login == login and user.password == password:
-				flag = True
+			if user.hasAuthData(login, password):
 				return user
 		return None
 
 
 	def hasAccountWithLogin(self, login : str) -> bool:
 		for user in self._userList:
-			if user.login == login:
+			if user.login.lower() == login.lower():
 				return True
 		return False
 

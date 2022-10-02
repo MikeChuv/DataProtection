@@ -23,7 +23,7 @@ class ChangePasswordDialog(QtWidgets.QDialog):
 
 
 	def changePassword(self):
-		if self.ui.oldPasswordEdit.text() == self._currentUser.password:
+		if self._currentUser.hasAuthData(self._currentUser.login, self.ui.oldPasswordEdit.text()):
 			newPass = self.ui.newPasswordEdit.text()
 			if newPass == self.ui.confirmNewPasswordEdit.text():
 				if newPass == '':
@@ -36,6 +36,9 @@ class ChangePasswordDialog(QtWidgets.QDialog):
 					self._currentUser.password = newPass
 					self.messageBox.setText(f'Password changed')
 					self.messageBox.show()
+					self.ui.oldPasswordEdit.clear()
+					self.ui.newPasswordEdit.clear()
+					self.ui.confirmNewPasswordEdit.clear()
 					self.onPasswordChanged.emit(self._currentUser)
 					self.close()
 				else:

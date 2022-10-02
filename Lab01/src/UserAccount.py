@@ -8,6 +8,7 @@ class UserAccount:
 	_blocked : int = 0
 	_hasPasswordRestriction : int = 0
 
+	m = 1114112 # alphabet size
 
 	def __init__(self, login : str, password : str, blocked, restrictions):
 		self._login = login
@@ -32,6 +33,69 @@ class UserAccount:
 		}
 		return accDict
 
+
+	##################################
+	#### Encryption
+	##################################
+
+	def _encryptBlock(self, block, key):
+		# cut key to block size
+		k = key[:len(block)]
+		c = ''
+		for pi, ki in zip(block, k):
+			c += chr((ord(pi) + ord(ki)) % self.m)
+		return c
+
+	def _decryptBlock(self, block, key):
+		k = key[:len(block)]
+		phrase = ''
+		for ci, ki in zip(block, k):
+			phrase += chr((ord(ci) + self.m - ord(ki)) % self.m)
+		return phrase
+
+
+	def encrypt(self, phrase : str, key : str) -> str:
+		if len(key) == 0:
+			return ''
+		elif len(phrase) > len(key):
+			l = len(key)
+			blocks = list(phrase[0+i:l+i] for i in range(0, len(phrase), l))
+			res = ''
+			for block in blocks:
+				cipher = self._encryptBlock(block, key)
+				res += cipher
+			return res
+		elif len(phrase) <= len(key):
+			cipher = self._encryptBlock(phrase, key)
+			return cipher
+
+
+	def decrypt(self, cipher, key):
+		if len(key) == 0:
+			return ''
+		elif len(cipher) > len(key):
+			l = len(key)
+			blocks = list(cipher[0+i:l+i] for i in range(0, len(cipher), l))
+			res = ''
+			for block in blocks:
+				origPhrase = self._decryptBlock(block, key)
+				res += origPhrase
+			return res			
+		elif len(cipher) <= len(key):
+			origPhrase = self._decryptBlock(cipher, key)
+			return origPhrase
+
+
+	#####################################
+	
+	def hasAuthData(self, login : str, password : str) -> bool:
+		if self._login == login and self._password == self.encrypt(login, password[::-1]):
+		# if self._login == login == self.decrypt(self._password, password):
+			return True
+		else: return False
+		
+
+
 	#####################################
 
 	@property
@@ -47,7 +111,7 @@ class UserAccount:
 
 	@password.setter
 	def password(self, password : str):
-		self._password = password
+		self._password = self.encrypt(self._login, password[::-1])
 
 
 
