@@ -35,3 +35,8 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 
+/sem2/Lab01/doc/
+/sem2/Lab01/PK/
+/sem2/Lab01/*.pub
+/sem2/Lab01/*.dat
+
